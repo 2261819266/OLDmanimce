@@ -8,7 +8,7 @@
             "name": "Run manim", // 渲染manim的480p15预览
             "type": "python",
             "request": "launch",
-            // "program": "${workspaceFolder}\\manim.py", // manim.py的路径
+            "program": "D:\\Program Files\\python 3.11.4\\Scripts\\manim.exe", // manim.py的路径
             "console": "integratedTerminal",           // 使用vscode的终端进行调试
             "args": [
                 "-pql",

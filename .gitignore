@@ -1,0 +1,7 @@
+media/
+__pycache__
+in.in
+out.out
+teach/
+.vscode/
+old/
