@@ -169,7 +169,7 @@ class ARC(Scene):
             # arc_center = LEFT * 1,
             radius = 2,
             stroke_width = 10,
-            start_angle = PI / 6,
+            # start_angle = PI / 6,
             angle = PI * 10,
             color = BLUE
         )
