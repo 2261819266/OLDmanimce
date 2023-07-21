@@ -41,6 +41,14 @@ class Scale(Scene) :
         self.play(mob.animate.scale(2, about_edge = UP))
         self.play(mob.animate.scale(2, about_edge = DOWN))
         # self.play(mob.scale, 2, about_point = np.array([-2, -2, 0]))
-        # self.play(mob.animate.scale(2, abuot_point = np.array([-2, -2, 0])))
+        # self.play(mob.animate.scale(0.5, abuot_point = ORIGIN))
+        # mob.scale()
 
-
+class ROTATE(Scene) :
+    def construct(self):
+        mob = Square()
+        self.play(Write(mob))
+        self.play(mob.animate.shift(LEFT * 2))
+        self.play(mob.animate.rotate(PI))
+        self.play(Rotate(mob, PI, axis = IN), run_time = 0.5)
+        self.play(Rotate(mob, PI / 2, about_point = ORIGIN))

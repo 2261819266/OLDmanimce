@@ -7,7 +7,7 @@
 #         text.move_to(1 * UP + 0.1 * RIGHT)
 #         self.play(text)
 #         return super().construct()
-from manimlib.imports import *
+from manim import *
 
 # class SquareToCircle(Scene):
 #     def construct(self):
