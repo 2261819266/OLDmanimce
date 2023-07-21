@@ -1,15 +1,9 @@
-# x = 0.0
-# n = 100000
-# for i in range(1, n):
-#     x += 1.0 / (i * i)
-# print(x)
+from manim import *
+from sympy import imageset
 
-import math
+class IMAGES(Scene):
+    def construct(self):
+        image_path = "image.png"
+        image = imageset(image_path)
 
-n = 1000
-def f(x):
-    if x > n:
-        return 0
-    return math.sqrt(x + (x + 1) * f(x + 1))
-
-print(f(1))
+        # self.add(image)

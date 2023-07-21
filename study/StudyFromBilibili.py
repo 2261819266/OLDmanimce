@@ -162,3 +162,18 @@ class ARROW(Scene):
         cir = Circle()
         line = TangentLine(cir, alpha = 0.4, length = 5)
         self.play(Create(cir), Create(line))
+
+class ARC(Scene):
+    def construct(self):
+        arc = Arc(
+            # arc_center = LEFT * 1,
+            radius = 2,
+            stroke_width = 10,
+            start_angle = PI / 6,
+            angle = PI * 10,
+            color = BLUE
+        )
+        # self.add(arc)
+        self.play(Write(arc), run_time = 1)
+
+        self.wait()
