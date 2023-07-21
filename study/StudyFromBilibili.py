@@ -177,3 +177,43 @@ class ARC(Scene):
         self.play(Write(arc), run_time = 1)
 
         self.wait()
+
+class IMG(Scene):
+    def construct(self):
+        img = ImageMobject(
+            "logo.png"
+        )
+        # self.add(img)
+        self.play(FadeIn(img))
+        self.play(img.animate.shift(LEFT * 3))
+        self.play(FadeOut(img))
+
+class TEXT(Scene):
+    def construct(self):
+        text = Text("This is a text", color = BLUE, background_stroke_color = RED)
+        self.play(FadeIn(text))
+        # self.wait(2)
+        self.play(text.animate.shift(UP * 2))
+        
+        t2 = Tex("\\LaTeX\\\\换行")
+        self.play(Create(t2))
+        self.play(t2.animate.shift(DOWN * 2))
+
+        t = Tex("abc", "de")
+        # self.play(Create(t[1][0]))
+        self.play(Create(t))
+
+        self.play(t[0].animate.shift(DOWN))
+
+        # print(t[0])
+
+
+        self.wait()
+
+class TEX(Scene):
+    def construct(self):
+        t = MathTex("\\sum^n_{i=1}i^3=?").scale(2)
+        self.play(Create(t))
+
+        
+        self.wait()
