@@ -195,7 +195,7 @@ class TEXT(Scene):
         # self.wait(2)
         self.play(text.animate.shift(UP * 2))
         
-        t2 = Tex("\\LaTeX\\\\换行")
+        t2 = Tex("\\LaTeX\\\\a")
         self.play(Create(t2))
         self.play(t2.animate.shift(DOWN * 2))
 
@@ -212,8 +212,112 @@ class TEXT(Scene):
 
 class TEX(Scene):
     def construct(self):
-        t = MathTex("\\sum^n_{i=1}i^3=?").scale(2)
+        t = MathTex("\\sum^n_{i=1}i^3=?\\\\dsfdf").scale(2)
         self.play(Create(t))
+
+        t2 = Text("abc\n", font = "Consolas")
+        self.play(FadeIn(t2))
 
         
         self.wait()
+        
+
+class NUMBERLINE(Scene):
+    def construct(self):
+        axis = NumberLine(
+            (-3, 4, 0.5),
+            # include_ticks = False,   # 刻度
+            include_tip=True,
+            # include_numbers=True,
+            unit_size=1.5,
+            label_direction=UP
+        )
+        axis.add_numbers({-1, 2})
+        self.play(FadeIn(axis))
+
+        dot = Dot(axis.n2p(3))
+        self.play(FadeIn(dot))
+        # print(axis.p2n(dot))
+
+        self.wait()
+
+class AXES(Scene):
+    def construct(self):
+        axes = Axes(
+            (-8, 4), (-2, 3),
+            # lines_center_point = ORIGIN,
+            axis_config = {
+                "include_numbers": True,
+            },
+            # x_length = 2,
+            # unit_size = 2,
+        )
+
+
+        self.play(FadeIn(axes))
+
+        self.wait()
+
+class NUMBERPLANE(Scene):
+    def construct(self):
+        grid = NumberPlane(
+            axis_config = {
+                "stroke_color": RED,
+            },
+        ).add_coordinates()
+
+        self.play(FadeIn(grid))
+        # self.play(grid.animate.apply_function(
+        #     lambda p : p + RIGHT * p[1]
+        # ))
+
+        grid.prepare_for_nonlinear_transform()
+        self.play(grid.animate.apply_function(
+            lambda p : p + np.array([
+                np.sin(p[1]),
+                np.sin(p[0]),
+                0
+            ])
+        ))
+
+        self.wait()
+
+class COMPLEXPLANE(Scene):
+    def construct(self):
+        grid = ComplexPlane().add_coordinates()
+        dot = Dot(grid.n2p(-3+2j))
+
+        self.play(FadeIn(grid), FadeIn(dot))
+        grid.prepare_for_nonlinear_transform()
+
+        self.play(grid.animate.apply_complex_function(
+            lambda z : np.exp(z)
+        ))
+
+        self.wait()
+
+class PARAMETRICFUNCTION(Scene):
+    def construct(self):
+        func = ParametricFunction(
+            lambda t : np.array([
+                2 * np.sin(3 * t) * np.cos(t),
+                2 * np.sin(3 * t) * np.sin(t),
+                0
+            ]),
+            t_range=(0, 2 * PI)
+            
+        )
+        self.play(Write(func))
+
+        self.wait()
+
+class FUNCTIONGRAPH(Scene):
+    def construct(self):
+        func = FunctionGraph(
+            lambda x : x ** 2
+        )
+
+        self.play(FadeIn(func))
+
+        self.wait()
+
