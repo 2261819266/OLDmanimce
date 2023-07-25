@@ -285,14 +285,15 @@ class NUMBERPLANE(Scene):
 class COMPLEXPLANE(Scene):
     def construct(self):
         grid = ComplexPlane().add_coordinates()
-        dot = Dot(grid.n2p(-3+2j))
+        # dot = Dot(grid.n2p(-3+2j))
+        dot = Dot(grid.n2p(2 * np.exp(1j * PI / 4)))
 
         self.play(FadeIn(grid), FadeIn(dot))
         grid.prepare_for_nonlinear_transform()
 
-        self.play(grid.animate.apply_complex_function(
-            lambda z : np.exp(z)
-        ))
+        # self.play(grid.animate.apply_complex_function(
+        #     lambda z : np.exp(z)
+        # ))
 
         self.wait()
 
